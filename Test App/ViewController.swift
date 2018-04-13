@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var label_1: UILabel!
+    @IBOutlet weak var label_2: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +22,15 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func buttonPressed_1(_ sender: UIButton) {
+    }
+    
+    @IBAction func buttonPressed_2(_ sender: UIButton) {
+    }
+    
+    @IBAction func buttonPressed_3(_ sender: UIButton) {
+    }
+    
 
 }
 

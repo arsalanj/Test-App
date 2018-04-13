@@ -67,7 +67,6 @@ class ViewController: UIViewController {
             print(weatherResponse?.location)
             
             
-            print(weatherResponse?.threeDayForecast.day)
             
             if let threeDayForecast = weatherResponse?.threeDayForecast {
                 for forecast in threeDayForecast {

@@ -7,6 +7,41 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireObjectMapper
+import ObjectMapper
+class WeatherResponse: Mappable {
+    var location: String?
+    var threeDayForecast: [Forecast]?
+    
+    required init?(map: Map){
+        
+    }
+    
+    func mapping(map: Map) {
+        location <- map["location"]
+        threeDayForecast <- map["three_day_forecast"]
+    }
+}
+
+class Forecast: Mappable {
+    var day: String?
+    var temperature: Int?
+    var conditions: String?
+    
+    required init?(map: Map){
+        
+    }
+    
+    func mapping(map: Map) {
+        day <- map["day"]
+        temperature <- map["temperature"]
+        conditions <- map["conditions"]
+    }
+}
+
+
+
 
 class ViewController: UIViewController {
 
@@ -23,6 +58,27 @@ class ViewController: UIViewController {
     }
 
     @IBAction func buttonPressed_1(_ sender: UIButton) {
+        
+ 
+        let URL = "https://raw.githubusercontent.com/tristanhimmelman/AlamofireObjectMapper/d8bb95982be8a11a2308e779bb9a9707ebe42ede/sample_json"
+        Alamofire.request(URL).responseObject { (response: DataResponse<WeatherResponse>) in
+            
+            let weatherResponse = response.result.value
+            print(weatherResponse?.location)
+            
+            
+            print(weatherResponse?.threeDayForecast.day)
+            
+            if let threeDayForecast = weatherResponse?.threeDayForecast {
+                for forecast in threeDayForecast {
+                    print(forecast.day)
+                    print(forecast.temperature)
+                }
+            }
+        }
+        
+        
+        
     }
     
     @IBAction func buttonPressed_2(_ sender: UIButton) {
